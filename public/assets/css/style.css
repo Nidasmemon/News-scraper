@@ -1,0 +1,112 @@
+body {
+    font-family: 'Muli', sans-serif;
+}
+
+.nav-wrapper {
+    border-top: solid 1px #424242;
+    background-color: #90caf9;
+    margin-bottom: 0;
+}
+
+.nav-wrapper ul li a {
+    font-size: 1.2em;
+    color: black;
+}
+
+.nav-wrapper ul li {
+    margin-left: 5px;
+}
+
+.title {
+    font-size: 2em;
+    color: black;
+    margin-right: 20px;
+    padding-left: 20px;
+}
+
+.s8 a {
+    font-size: 1.2em;
+}
+
+#scrape {
+    background-color: #66bb6a;
+}
+
+#scrape:hover {
+    background-color: #43a047;
+}
+
+#clear {
+    background-color: #ef5350;
+}
+
+#clear:hover {
+    background-color:#d32f2f;
+}
+
+#mid {
+    margin-top: 0;
+    background-image: url("/images/newspaper.png");
+    background-size: 100%;
+    text-align: center;
+    padding-top: 10%;   
+    padding-bottom: 20%;
+    border-top: solid 1px #424242;
+    border-bottom: solid 1px #424242;
+}
+
+.save {
+    background-color: #90caf9;
+    color: black;
+}
+
+.save:hover {
+    background-color: #1e88e5;
+}
+
+.notes {
+    margin-bottom: 10px;
+    background-color: #66bb6a;
+    width: 183px;
+}
+
+.notes:hover {
+    background-color: #43a047;
+}
+
+#delete {
+    background-color: #ef5350;
+}
+
+#delete:hover {
+    background-color:#d32f2f;
+}
+
+.saveNote {
+    background-color: #66bb6a;
+    margin-right: 90px;
+}
+
+.saveNote:hover {
+    background-color: #43a047;
+}
+
+.deleteNote {
+    background-color: #ef5350;
+}
+
+.deleteNote:hover {
+    background-color:#d32f2f;
+}
+
+img {
+    width: 100%;
+}
+
+.row {
+    margin-top: 40px;
+}
+
+.s8 {
+    margin-top: -20px;
+}

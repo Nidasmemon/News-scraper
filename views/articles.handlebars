@@ -1,0 +1,31 @@
+<nav>
+    <div class="nav-wrapper">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li class="title"><a href="/">Mongo Scraper</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/saved">Saved Articles</a></li>
+            <li><a class="waves-effect waves-light btn" id="scrape">Scrape New Articles</a></li>
+            <li><a class="waves-effect waves-light btn" id="clear">Clear Articles</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div id="mid">
+    <h1>Mongo Scraper</h1>
+    <h4>Mercury News Edition</h4>
+</div>
+
+{{#each articles}}
+<div class="container" id="mainArticles">
+    <div class="row">
+        <div class="col s2"> <img src={{this.image}}></div>
+        <div class="col s8">
+            <a href="{{this.link}}"><p>{{this.title}}</p></a>
+            <p>{{this.description}}</p>
+        </div>
+        <div class="col s2"><button class="save waves-effect waves-light btn" data-id="{{this._id}}">Save Article</button></div>
+    </div> 
+</div>
+
+
+{{/each}}

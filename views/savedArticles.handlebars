@@ -1,0 +1,36 @@
+<nav>
+    <div class="nav-wrapper">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li class="title">Saved Articles</li>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div id="mid">
+    <h1>Saved Articles</h1>
+    <h4>Your Saved Articles</h4>
+</div>
+
+
+{{#each articles}}
+<div class="container">
+    <div class="row" style="margin-top: 20px">
+        <div class="col s2"> <img src={{this.image}} style="width: 100%" /></div>
+        <div class="col s7">
+            <a href="{{this.link}}">
+                <p>{{this.title}}</p>
+            </a>
+            <p>{{this.description}}</p>
+        </div>
+        <div class="col s3">
+            <button data-target="modal1" data-title="{{this.title}}" data-id={{this._id}} href="#modal1" class="notes waves-effect waves-light btn modal-trigger">Article Notes</button>
+            <button class="waves-effect waves-light btn delete" id="delete" data-id={{this._id}}>Delete from Saved</button></div>
+        </div>
+</div>
+{{/each}}
+
+{{#each articles}} 
+{{> modal}}
+{{/each}}

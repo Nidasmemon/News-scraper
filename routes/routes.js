@@ -2,6 +2,7 @@ const db = require("../models");
 // Require scraping tools
 var axios = require("axios");
 var cheerio = require("cheerio");
+var mongoose = require("mongoose");
 function routes(app) {
     // Routes
 
@@ -120,15 +121,17 @@ function routes(app) {
 
 
     // Route for saving/updating an Article's associated Note
-    app.post("/articles/:id", function (req, res) {
+    app.post("/api/savedNotes/:articleId", function (req, res) {
         // Create a new note and pass the req.body to the entry
+       console.log(req.body, "req.body")
+       console.log(req.params.articleId, "articleId");
         db.Note.create(req.body)
             .then(function (dbNote) {
                 // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
                 // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
                 // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
                 return db.Article.findOneAndUpdate(
-                    { _id: req.params.id },
+                    { _id: req.params.articleId },
                     { note: dbNote._id },
                     { new: true }
                 );
@@ -143,6 +146,22 @@ function routes(app) {
             });
     });
 
+    app.delete("/api/savedNotes/:articleId/:noteId", function(req, res) {
+        console.log(req.params.articleId)
+        console.log(req.params.noteId)
+
+        db.Article.update(
+            { "_id": mongoose.Types.ObjectId(req.params.articleId) },
+            { "$pull": { "note": mongoose.Types.ObjectId(req.params.noteId) } },
+            { "multi": true },
+            function(err,status) {
+          
+            }
+          )
+        // db.Article.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.articleId) }, { $set: { note: false } }, function (err, data) {
+        //     res.send(data);
+        // });
+    })
 
     app.put("/api/articles/:id", function (req, res) {
         db.Article.findOneAndUpdate({ _id: req.params.id }, { $set: { saved: true } }, { new: true }, function (err, data) {

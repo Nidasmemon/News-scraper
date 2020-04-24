@@ -53,29 +53,51 @@ $(".saveNote").on("click", function () {
     $(".addedNotes").append(newNote);
 
     $.ajax({
-        url: "/articles/" + dataId,
+        url: "/api/savedNotes/" + dataId,
         method: "POST",
         data: noteData
     })
 })
 
 $(".notes").on("click", function () {
-    var title = $(this).attr("data-title");
+    var noteTitle = $(this).attr("data-title");
+ 
     var dataId = $(this).attr("data-id");
-    $("#modal-title").html(title);
-    $("#articleId").html(dataId);
+    
+    $("#modal-title").html(noteTitle);
+      $("#articleId").val(dataId);
+   
+    $.get("/articles/" + dataId, function(data) {
+        if (data.note ) {
+            console.log(data)
+        $("#textarea1").val(data.note.body)
+        $("#noteId").val(data.note._id)
+        }
+        else {
+            $("#textarea1").val("");
+        }
+        
+    })
+    
 })
 
 $(".deleteNote").on("click", function () {
     // var noteId 
+    var dataId = $("#articleId").val();
+    var noteId = $("#noteId").val();
     $.ajax({
-        url: "/deleteNote",
+        url: "/api/savedNotes/" + dataId + "/" + noteId,
         method: "DELETE"
+    }).then(function(data) {
+        console.log(data)
     })
 })
 
 $(document).ready(function () {
     $('.modal').modal();
+
+    $('#textarea1').val();
+    M.textareaAutoResize($('#textarea1'));
 });
 
 // // Grab the articles as a json
